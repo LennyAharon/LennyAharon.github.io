@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html class="gray-page">
+
+<!--embed google fonts-->
+<link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Khula:wght@300&display=swap" rel="stylesheet">
+
+<head>
+	<meta http-equiv="content-type" content="text/html" charset="utf-8" />
+	<link type="text/css" rel="stylesheet" href="css/stylesheet.css" />
+	<title>lenny aharon | research</title>
+	<link rel="icon" href="images/favicon.png">
+	<style>
+		.left-blurb h2 {
+			margin-top: 40px;
+		}
+
+		.right-sub-container .center-image,
+		.right-sub-container .right-image {
+			padding-top: 40px;
+			padding-right: 40px;
+			padding-bottom: 40px;
+		}
+
+		.paper-entry {
+			overflow: hidden;
+		}
+
+		.paper-entry + .paper-entry {
+			border-top: 1px solid #444;
+		}
+
+		.paper-authors {
+			font-style: italic;
+			color: #bbb;
+			font-size: 0.95em;
+		}
+
+		.paper-authors b {
+			color: #fafafa;
+		}
+
+		.coming-soon {
+			color: #e3db00;
+			font-size: 0.95em;
+		}
+
+		.image-placeholder {
+			background-color: #1a1a1a;
+			border: 1px dashed #444;
+			border-radius: 4px;
+			color: #666;
+			font-family: 'Cutive Mono', Courier, monospace;
+			font-size: 0.9em;
+			text-align: center;
+			padding: 60px 20px;
+		}
+
+		.list-section p {
+			margin: 0.5em 0;
+		}
+
+		.paper-links {
+			margin-top: 10px;
+		}
+
+		.bibtex-block {
+			display: none;
+			margin-top: 10px;
+			padding: 12px;
+			background-color: #1a1a1a;
+			border: 1px solid #444;
+			border-radius: 4px;
+			color: #dcdcdc;
+			font-family: 'Cutive Mono', Courier, monospace;
+			font-size: 0.85em;
+			white-space: pre-wrap;
+		}
+	</style>
+	<script>
+		function toggleBibtex(event, bibtexId) {
+			event.preventDefault();
+			const bibtexElement = document.getElementById(bibtexId);
+			if (!bibtexElement) return;
+			bibtexElement.style.display = bibtexElement.style.display === "block" ? "none" : "block";
+		}
+	</script>
+</head>
+
+<body class="centered">
+	<nav class="centered" style="max-width: 1000px">
+		<ul class="centered">
+			<li><a class="link-purp" href="index.html">about</a></li>
+			<li><a class="link-purp" href="research.html">research</a></li>
+			<li><a class="link-purp" href="art.html">fun</a></li>
+		</ul>
+	</nav>
+
+	<!-- ---------------------------- RESEARCH INTERESTS ------------------------ -->
+	<div class="container centered" style="max-width: 1000px">
+		<div class="center-sub-container" style="width: 100%">
+			<div class="center-blurb">
+				<h2>Research Interests</h2>
+				<p>My research sits at the intersection of 3D computer vision, probabilistic modeling,
+					and generative AI &mdash; building models that recover 3D structure from raw video,
+					reason about uncertainty, and remain usable in real scientific workflows.
+					I work on multi-view vision transformers, variance-inflated Ensemble Kalman Smoothers
+					for 3D pose estimation, and open-source pipelines like
+					<a class="doc-link" href="https://github.com/paninski-lab/lightning-pose">Lightning Pose</a>
+					that minimize labeled-data burdens for behavioral analysis. I'm also actively working on
+					mechanistic interpretability and continual learning.</p>
+				<p>
+					<a class="doc-link" href="https://scholar.google.com/citations?user=vuOpbEIAAAAJ&amp;hl=en">Google Scholar</a>
+					&nbsp;&middot;&nbsp;
+					<a class="doc-link" href="https://github.com/LennyAharon">GitHub</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div style="width: 100%; margin-bottom: 20px"></div>
+
+	<!-- ---------------------------- PUBLICATIONS ------------------------ -->
+	<div class="container centered" style="max-width: 1000px; padding: 0;">
+
+		<div class="center-sub-container" style="width: 100%">
+			<div class="center-blurb" style="padding-bottom: 0;">
+				<h2>Publications</h2>
+			</div>
+		</div>
+
+		<!-- 1. Lightning Pose 3D / LP3D -->
+		<div class="paper-entry">
+			<div class="left-sub-container" style="width: 60%">
+				<div class="left-blurb" style="padding-top: 0px; padding-right: 60px">
+					<h2>Lightning Pose 3D: An Uncertainty-Aware Framework for Data-Efficient Multi-View Animal Pose Estimation</h2>
+					<p class="paper-authors"><b>Lenny Aharon</b>, Matthew R Whiteway, Karan Sikka, Keemin Lee, Yanchen Wang, Selmaan Chettih, Benjamin Midler, Ilana B Witten, Dmitriy Aronov, International Brain Laboratory, Liam Paninski. May 2026.</p>
+					<p>The journal-version extension of our multi-view pose framework: a calibration-free,
+						uncertainty-aware pipeline for 3D animal pose estimation, integrated into the
+						open-source Lightning Pose ecosystem and deployed across labs worldwide.</p>
+					<p class="paper-links">
+						<span class="coming-soon">Nature Methods (Revision)</span>
+						&nbsp;/&nbsp;
+						<a class="doc-link" href="https://www.biorxiv.org/content/10.64898/2026.04.20.719731v1">Paper</a>
+						&nbsp;/&nbsp;
+						<a class="doc-link" href="https://github.com/paninski-lab/lightning-pose">Code</a>
+						&nbsp;/&nbsp;
+						<a class="doc-link" href="#" onclick="toggleBibtex(event, 'lp3d-bibtex')">bibtex</a>
+					</p>
+					<pre id="lp3d-bibtex" class="bibtex-block">@article{aharon2026lightning,
+  title={Lightning Pose 3D: an uncertainty-aware framework for data-efficient multi-view animal pose estimation},
+  author={Aharon, Lenny and Whiteway, Matthew R and Sikka, Karan and Lee, Keemin and Wang, Yanchen and Chettih, Selmaan and Midler, Benjamin and Witten, Ilana B and Aronov, Dmitriy and International Brain Laboratory and others},
+  journal={bioRxiv},
+  pages={2026--04},
+  year={2026},
+  publisher={Cold Spring Harbor Laboratory}
+}</pre>
+				</div>
+			</div>
+			<div class="right-sub-container" style="width: 36%">
+				<div class="center-image">
+					<div class="image-placeholder">[gif coming soon]</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 2. Audit Before You Merge -->
+		<div class="paper-entry">
+			<div class="left-sub-container" style="width: 60%">
+				<div class="left-blurb" style="padding-top: 0px; padding-right: 60px">
+					<h2>Audit Before You Merge: Provenance, Probing, and Continual LoRA Composition</h2>
+					<p class="paper-authors"><b>Lenny Aharon</b>, Neta Glazer, Lior Aharon. ICML 2026 CATS Workshop.</p>
+					<!-- <p>A framework for auditing LoRA adapters before composing them into a base model:
+						tracking provenance, probing for interference and capability regression, and
+						supporting safer continual adaptation at scale.</p> -->
+					<p class="paper-links">
+						<span class="coming-soon">ICML 2026 CATS Workshop</span>
+						&nbsp;/&nbsp;
+						<span class="coming-soon">[coming soon]</span>
+					</p>
+				</div>
+			</div>
+			<div class="right-sub-container" style="width: 36%">
+				<div class="center-image">
+					<img src="images/cont_lora_merge.png" style="border-radius: 4px" />
+				</div>
+			</div>
+		</div>
+
+		<!-- 3. BEAST3D -->
+		<div class="paper-entry">
+			<div class="left-sub-container" style="width: 60%">
+				<div class="left-blurb" style="padding-top: 0px; padding-right: 60px">
+					<h2>BEAST3D: Animal Behavioral Analysis and Neural Encoding from Multi-View Video via Gaussian Splatting</h2>
+					<p class="paper-authors">Yanchen Wang, <b>Lenny Aharon</b>, Wangshu Zhu, Kyle Daruwalla, Linghua Zhang, Jiaru Zou, Selmaan N. Chettih, Xun Helen Hou, Liam Paninski, Matthew R Whiteway. May 2026.</p>
+					<!-- <p>Extending behavioral video analysis to true 3D scene representations via Gaussian
+						splatting, supporting both fine-grained behavioral analysis and neural encoding
+						from multi-view recordings.</p> -->
+					<p class="paper-links">
+						<span class="coming-soon">NeurIPS 2026 (Submitted)</span>
+						&nbsp;/&nbsp;
+						<span class="coming-soon">[coming soon]</span>
+					</p>
+				</div>
+			</div>
+			<div class="right-sub-container" style="width: 36%">
+				<div class="center-image">
+					<div class="image-placeholder">[gif coming soon]</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 4. Creativity and Hallucinations in LLMs -->
+		<div class="paper-entry">
+			<div class="left-sub-container" style="width: 60%">
+				<div class="left-blurb" style="padding-top: 0px; padding-right: 60px">
+					<h2>Creativity and Hallucinations Share Mechanisms in LLMs</h2>
+					<p class="paper-authors">Neta Glazer, Hadas Orgad, <b>Lenny Aharon</b>, Ethan Fetaya. April 2026.</p>
+					<!-- <p>We show that the internal mechanisms producing creative generation and factual
+						hallucination in large language models overlap substantially &mdash; ablating one set
+						of components reduces creativity while steering with the same components can shift
+						the trade-off between novelty and factuality.</p> -->
+					<p class="paper-links">
+						<span class="coming-soon">COLM 2026 (Submitted)</span>
+						&nbsp;/&nbsp;
+						<span class="coming-soon">[coming soon]</span>
+					</p>
+				</div>
+			</div>
+			<div class="right-sub-container" style="width: 36%">
+				<div class="center-image">
+					<img src="images/creative.png" style="border-radius: 4px" />
+				</div>
+			</div>
+		</div>
+
+		<!-- 5. Sparse-View Interpretable 3D Animal Behavior -->
+		<div class="paper-entry">
+			<div class="left-sub-container" style="width: 60%">
+				<div class="left-blurb" style="padding-top: 0px; padding-right: 60px">
+					<h2>Sparse-View Interpretable 3D Animal Behavior Representations for Neural Encoding and Decoding</h2>
+					<p class="paper-authors">Xinming Dai, Qihang Jin, Tianshu Tan, Baiyuan Chen, Hanrui Lyu, <b>Lenny Aharon</b>, Matthew R Whiteway, Liam Paninski, Yizi Zhang.</p>
+					<!-- <p>Recovering interpretable 3D behavioral representations from sparse-view video
+						setups typical of real laboratory recordings, and connecting those representations
+						to simultaneously recorded neural activity for both encoding and decoding analyses.</p> -->
+					<p class="paper-links">
+						<span class="coming-soon">NeurIPS 2026 (Submitted)</span>
+						&nbsp;/&nbsp;
+						<span class="coming-soon">[coming soon]</span>
+					</p>
+				</div>
+			</div>
+			<div class="right-sub-container" style="width: 36%">
+				<div class="center-image">
+					<img src="images/ibl_3d.png" style="border-radius: 4px" />
+				</div>
+			</div>
+		</div>
+
+		<!-- 6. Audio-Language Models -->
+		<div class="paper-entry">
+			<div class="left-sub-container" style="width: 60%">
+				<div class="left-blurb" style="padding-top: 0px; padding-right: 60px">
+					<h2>Are Audio-Language Models Listening? Audio-Specialist Heads for Adaptive Audio Steering</h2>
+					<p class="paper-authors">Neta Glazer*, <b>Lenny Aharon</b>*, Ethan Fetaya. March 2026. (*equal contribution)</p>
+					<!-- <p>We identify attention heads in audio-language models that specialize in genuine audio
+						content versus surface linguistic patterns, and use them to steer model behavior at
+						inference time &mdash; improving audio grounding without retraining.</p> -->
+					<p class="paper-links">
+						<span class="coming-soon">Interspeech 2026 (Submitted)</span>
+						&nbsp;/&nbsp;
+						<a class="doc-link" href="https://arxiv.org/pdf/2603.06854">Paper</a>
+					</p>
+				</div>
+			</div>
+			<div class="right-sub-container" style="width: 36%">
+				<div class="center-image">
+					<img src="images/audio_listen.png" style="border-radius: 4px" />
+				</div>
+			</div>
+		</div>
+
+
+		
+
+		<!-- 7. Uncertainty-Aware Multi-View Animal Pose Estimation -->
+		<div class="paper-entry">
+			<div class="left-sub-container" style="width: 60%">
+				<div class="left-blurb" style="padding-top: 0px; padding-right: 60px">
+					<h2>An Uncertainty-Aware Framework for Data-Efficient Multi-View Animal Pose Estimation</h2>
+					<p class="paper-authors"><b>Lenny Aharon</b>, Keemin Lee, Karan Sikka, Selmaan Chettih, Cole Hurwitz, Liam Paninski, Matthew R Whiteway. October 2025.</p>
+					<!-- <p>A framework that fuses predictions from multiple camera views under learned per-keypoint
+						uncertainty, using a variance-inflated Ensemble Kalman Smoother to enforce
+						spatial-temporal constraints on reconstructed 3D trajectories &mdash; reaching
+						state-of-the-art accuracy with significantly fewer labeled frames.</p> -->
+					<p class="paper-links">
+						<a class="doc-link" href="https://neuroai-multimodal-workshop.github.io">AAAI 2026 Spotlight Talk (Neuro for AI &amp; AI for Neuro Workshop)</a>
+						&nbsp;/&nbsp;
+						<a class="doc-link" href="https://arxiv.org/abs/2510.09903">Paper</a>
+						&nbsp;/&nbsp;
+						<a class="doc-link" href="https://github.com/paninski-lab/lightning-pose">Code</a>
+						&nbsp;/&nbsp;
+						<a class="doc-link" href="#" onclick="toggleBibtex(event, 'uamv-bibtex')">bibtex</a>
+					</p>
+					<pre id="uamv-bibtex" class="bibtex-block">@article{aharon2026lightning,
+  title={Lightning Pose 3D: an uncertainty-aware framework for data-efficient multi-view animal pose estimation},
+  author={Aharon, Lenny and Whiteway, Matthew R and Sikka, Karan and Lee, Keemin and Wang, Yanchen and Chettih, Selmaan and Midler, Benjamin and Witten, Ilana B and Aronov, Dmitriy and International Brain Laboratory and others},
+  journal={bioRxiv},
+  pages={2026--04},
+  year={2026},
+  publisher={Cold Spring Harbor Laboratory}
+}</pre>
+				</div>
+			</div>
+			<div class="right-sub-container" style="width: 36%">
+				<div class="center-image">
+					<img src="images/mirror-mouse.gif" style="border-radius: 4px" />
+				</div>
+			</div>
+		</div>
+
+		<!-- 8. Improved calibration-free multi-view pose estimation -->
+		<div class="paper-entry">
+			<div class="left-sub-container" style="width: 60%">
+				<div class="left-blurb" style="padding-top: 0px; padding-right: 60px">
+					<h2>Improved calibration-free multi-view pose estimation with the variance-inflated Ensemble Kalman Smoother</h2>
+					<p class="paper-authors"><b>Lenny Aharon</b>*, Keemin Lee*, Karan Sikka, Selmaan Chettih, Cole Hurwitz, Liam Paninski, Matthew R Whiteway. (*equal contribution)</p>
+					<p>Columbia University, New York, NY, USA.</p>
+					<p class="paper-links">
+						<a class="doc-link" href="https://www.cv4animals.com/2025-home">CV4Animals 2026 Workshop at CVPR (Oral)</a>
+						&nbsp;/&nbsp;
+						<a class="doc-link" href="https://drive.google.com/file/d/1LX3mCkmLUH0JIEW_D2Vb5la8uc88RDEb/view">Paper</a>
+						&nbsp;/&nbsp;
+						<a class="doc-link" href="https://github.com/paninski-lab/eks">Code</a>
+					</p>
+				</div>
+			</div>
+			<div class="right-sub-container" style="width: 36%">
+				<div class="center-image">
+					<img src="images/eks.png" style="border-radius: 4px" />
+				</div>
+			</div>
+		</div>
+
+	</div><!-- end publications container -->
+	<div style="width: 100%; margin-bottom: 20px"></div>
+
+	<!-- ---------------------------- PRESENTATIONS / TALKS / TEACHING ------------------------ -->
+	<div class="container centered" style="max-width: 1000px">
+
+		<div class="cv-section list-section">
+			<div class="left-blurb">
+				<h2>Presentations</h2>
+				<p><b>Cosyne 2026</b> &mdash; Poster: <i>An Uncertainty-Aware Framework for Data-Efficient Multi-View Animal Pose Estimation</i></p>
+				<p><b>AAAI 2026</b> &mdash; Spotlight Talk &amp; Poster: <i>An Uncertainty-Aware Framework for Data-Efficient Multi-View Animal Pose Estimation</i></p>
+				<p><a class="doc-link" href="https://stats-workshop.github.io"><b>Statistics and Data Science Workshop</b></a> &mdash; Poster: <i>Lightning Pose 3D: An Uncertainty-Aware Framework for Data-Efficient Multi-View Animal Pose Estimation</i></p>
+				<p><b>CVPR 2025</b> &mdash; Oral &amp; Poster: <i>Improved calibration-free multi-view pose estimation with the variance-inflated Ensemble Kalman Smoother</i></p>
+			</div>
+		</div>
+
+		<div class="cv-break-section"></div>
+
+		<div class="cv-section list-section">
+			<div class="left-blurb">
+				<h2>Invited Talks</h2>
+				<p><b>CoNectome, University of Washington</b> (May 2026) &mdash; <i>Lightning Pose 3D: A Guided Tour through Multi-View Animal Pose Estimation</i></p>
+				<p><b>Stanford</b> (Apr 2026) &mdash; <i>Lightning Pose 3D: An Uncertainty-Aware Framework for Data-Efficient Multi-View Animal Pose Estimation</i></p>
+				<p><b>Zuckerman Institute, Columbia University</b> (Oct 2025) &mdash; Organized a Multi-View Lightning Pose Workshop</p>
+			</div>
+		</div>
+
+		<div class="cv-break-section"></div>
+
+		<div class="cv-section list-section">
+			<div class="left-blurb">
+				<h2>Teaching</h2>
+				<p><b>Graduate Teaching Assistant, Statistics</b> &mdash; Columbia University (Aug 2023 &ndash; Present)<br>
+					Linear Regression Models, Stochastic Processes, Survival Analysis, Introduction to Statistics. 60+ students per class.</p>
+				<p><b>Teaching Assistant, Economics</b> &mdash; Columbia University (Aug 2022 &ndash; Aug 2023)<br>
+					Intermediate Microeconomics.</p>
+			</div>
+		</div>
+
+	</div>
+
+	<footer class="centered">
+		<ul class="centered">
+			<li>copyright &copy; 2026 Lenny Aharon</li>
+			<li>&#x26A1;</li>
+			<li>built on a template from <a class="link-purp" href="https://themattinthehatt.github.io">matt whiteway</a></li>
+		</ul>
+	</footer>
+</body>
+
+</html>
