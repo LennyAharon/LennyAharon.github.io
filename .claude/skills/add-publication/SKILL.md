@@ -1,6 +1,6 @@
 ---
 name: add-publication
-description: Add or update a publication entry on research.html (Lenny Aharon's personal site), then optionally commit, push to GitHub, and visually verify the live page. Use when the user gives you paper details to add to the site, asks to update a paper's status/venue (e.g. "submitted" -> accepted), or asks to publish/ship/deploy changes to lennyaharon.github.io.
+description: Add or update a publication entry on research.html (Lenny Aharon's personal site). Previews the change locally in Chrome and requires explicit user approval before committing, then requires a separate approval before pushing to GitHub (which deploys to the live site). Use when the user gives you paper details to add to the site, asks to update a paper's status/venue (e.g. "submitted" -> accepted), or asks to publish/ship/deploy changes to lennyaharon.github.io.
 ---
 
 # Add a publication to research.html
@@ -68,13 +68,27 @@ Bump `<lastmod>` for the `research.html` `<url>` entry in `sitemap.xml` to today
 
 Show the diff (`git diff`) before doing anything else. Confirm it looks right.
 
-## 5. Commit and offer to push
+## 5. Preview locally in Chrome — required approval gate
 
-Commit with a message describing what changed (new publication added / status updated).
-Then ask the user whether to push to `origin main` now — GitHub Pages deploys straight from
-that push, so pushing **is** publishing to the live site. Don't push without confirmation.
+Before committing anything, show the change running:
 
-## 6. Verify live
+1. Start a local static server in the repo root: `python3 -m http.server` (pick a free port if
+   8000 is taken). Stop it once the preview is done.
+2. Load the `claude-in-chrome` tools if not already loaded, open a new tab, and navigate to
+   `http://localhost:<port>/research.html` (or whichever page changed).
+3. Check the new/updated entry renders correctly — layout intact, image loads, and (if a
+   bibtex link was added) click it to confirm the toggle works.
+4. **Stop and explicitly ask the user to approve the preview** before proceeding to Step 6.
+   Do not commit or push on your own judgment that "it looks fine" — the user must confirm.
+
+## 6. Commit and offer to push
+
+Only after the user approves the local preview: commit with a message describing what changed
+(new publication added / status updated). Then separately ask the user whether to push to
+`origin main` now — GitHub Pages deploys straight from that push, so pushing **is** publishing
+to the live site. Don't push without this second, explicit confirmation.
+
+## 7. Verify live
 
 After pushing, GitHub Pages typically republishes within 1–2 minutes (occasionally longer).
 If the user wants to see it, use the `claude-in-chrome` skill/tools to navigate to
