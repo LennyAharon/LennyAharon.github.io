@@ -33,3 +33,7 @@ Each page is a self-contained HTML file with its own `<head>` (meta tags, Open G
 - Nav is duplicated at the top of every page: `about` / `research` / `outside` links to `index.html`, `research.html`, `art.html`.
 - Publications in `research.html` follow a repeated `.paper-entry` block: title (`h2`), `.paper-authors` (bold self-name), abstract text, `.paper-links` (venue via `.coming-soon` span when not yet published, then Paper / Code / bibtex links separated by `&nbsp;/&nbsp;`), a hidden `.bibtex-block` `<pre>` toggled via `toggleBibtex(event, '<id>')`, and a paired image/gif on the right. New publications should follow this exact block structure and be added in reverse-chronological order.
 - `toggleBibtex` is defined inline in `research.html`; each bibtex block needs a unique `id` matching its toggle link's argument.
+
+## Skills
+
+- `add-publication` (`.claude/skills/add-publication/`) — use this for adding/updating a publication entry on `research.html`; it also handles the commit/push/live-verify flow, since pushing to `main` is what deploys to GitHub Pages.
