@@ -31,9 +31,17 @@ Each page is a self-contained HTML file with its own `<head>` (meta tags, Open G
 
 - Layout uses a shared `centered` / `container` / `left-sub-container` / `right-sub-container` flex pattern (see `css/stylesheet.css`) with inline `width` percentages set per-section in the HTML.
 - Nav is duplicated at the top of every page: `about` / `research` / `outside` links to `index.html`, `research.html`, `art.html`.
-- Publications in `research.html` follow a repeated `.paper-entry` block: title (`h2`), `.paper-authors` (bold self-name), abstract text, `.paper-links` (venue via `.coming-soon` span when not yet published, then Paper / Code / bibtex links separated by `&nbsp;/&nbsp;`), a hidden `.bibtex-block` `<pre>` toggled via `toggleBibtex(event, '<id>')`, and a paired image/gif on the right. New publications should follow this exact block structure and be added in reverse-chronological order.
+- Publications in `research.html` follow a repeated `.paper-entry` block: title (`h2`), `.paper-authors` (bold self-name), abstract text, `.paper-links` (venue via `.coming-soon` span when not yet published, then Paper / Code / bibtex links separated by `&nbsp;/&nbsp;`), a hidden `.bibtex-block` `<pre>` toggled via `toggleBibtex(event, '<id>')`, and a paired image/gif on the right. New publications should follow this exact block structure, in the same order as the resume.
 - `toggleBibtex` is defined inline in `research.html`; each bibtex block needs a unique `id` matching its toggle link's argument.
+- Recognition (Oral / Spotlight) is shown as a badge right after the venue: `<span class="badge badge-oral">Oral</span>` or `<span class="badge badge-spotlight">Spotlight</span>`.
+- Publication order on `research.html` mirrors the Publications order on Lenny's resume.
+- Video figures (`.mp4`) must use `<video autoplay loop muted playsinline>`, not `<img>`.
 
 ## Skills
 
 - `add-publication` (`.claude/skills/add-publication/`) — use this for adding/updating a publication entry on `research.html`; it also handles the commit/push/live-verify flow, since pushing to `main` is what deploys to GitHub Pages.
+- `sync-from-resume` (`.claude/skills/sync-from-resume/`) — use this when Lenny shares an updated resume: the resume is the source of truth, and this skill diffs it against both pages, updates publications (order, venues, Oral/Spotlight badges, links, figures) and CV sections, and goes through the same preview → approval → commit → approval → push flow.
+
+## Approval
+
+Never commit or push without Lenny's explicit approval. Commits are authored as Lenny Aharon.
