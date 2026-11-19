@@ -33,6 +33,61 @@
 
 		.paper-entry {
 			overflow: hidden;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		/* Figures sit beside the text; keep padding tight so diagrams get as much width as possible. */
+		.paper-entry .right-sub-container .center-image {
+			padding: 30px 30px 30px 0;
+		}
+
+		.paper-entry .center-image img,
+		.paper-entry .center-image video {
+			width: 100%;
+			cursor: zoom-in;
+		}
+
+		/* Phones and narrow windows: stack text, then figure. */
+		@media (max-width: 800px) {
+			.paper-entry {
+				display: block;
+			}
+
+			.paper-entry .left-sub-container,
+			.paper-entry .right-sub-container {
+				width: 100% !important;
+				float: none;
+				display: block;
+			}
+
+			.paper-entry .right-sub-container .center-image {
+				padding: 0 20px 30px 40px;
+			}
+		}
+
+		/* Click a figure to see it full size. */
+		#figure-zoom {
+			display: none;
+			position: fixed;
+			inset: 0;
+			z-index: 100;
+			background: rgba(0, 0, 0, 0.88);
+			align-items: center;
+			justify-content: center;
+			cursor: zoom-out;
+		}
+
+		#figure-zoom.open {
+			display: flex;
+		}
+
+		#figure-zoom img {
+			max-width: 94vw;
+			max-height: 90vh;
+			border-radius: 6px;
+			background: #fff;
 		}
 
 		.paper-entry + .paper-entry {
@@ -116,6 +171,23 @@
 		}
 	</style>
 	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			const zoom = document.createElement('div');
+			zoom.id = 'figure-zoom';
+			zoom.innerHTML = '<img alt="" />';
+			document.body.appendChild(zoom);
+			const close = function () { zoom.classList.remove('open'); };
+			zoom.addEventListener('click', close);
+			document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+			document.querySelectorAll('.paper-entry .center-image img').forEach(function (img) {
+				img.addEventListener('click', function () {
+					zoom.querySelector('img').src = img.src;
+					zoom.querySelector('img').alt = img.alt;
+					zoom.classList.add('open');
+				});
+			});
+		});
+
 		function toggleBibtex(event, bibtexId) {
 			event.preventDefault();
 			const bibtexElement = document.getElementById(bibtexId);
@@ -171,8 +243,8 @@
 
 		<!-- 1. Lightning Pose 3D / LP3D -->
 		<div class="paper-entry">
-			<div class="left-sub-container" style="width: 55%">
-				<div class="left-blurb" style="padding-top: 0px; padding-right: 60px">
+			<div class="left-sub-container" style="width: 46%">
+				<div class="left-blurb" style="padding-top: 0px; padding-right: 30px">
 					<h2>Lightning Pose 3D: An Uncertainty-Aware Framework for Data-Efficient Multi-View Animal Pose Estimation</h2>
 					<p class="paper-authors"><b>Lenny Aharon</b>, Matthew R. Whiteway, Karan Sikka, Keemin Lee, Yanchen Wang, Selmaan Chettih, Benjamin Midler, Ilana B. Witten, Dmitriy Aronov, International Brain Laboratory, Liam Paninski. 2026.</p>
 					<p>End-to-end uncertainty-aware pipeline for multi-view 3D animal pose estimation, combining cross-view
@@ -197,7 +269,7 @@
 }</pre>
 				</div>
 			</div>
-			<div class="right-sub-container" style="width: 42%">
+			<div class="right-sub-container" style="width: 54%">
 				<div class="center-image">
 					<img src="images/LP3D.gif" alt="Lightning Pose 3D multi-view pose predictions" style="border-radius: 4px" />
 				</div>
@@ -206,8 +278,8 @@
 
 		<!-- 2. BEAST3D -->
 		<div class="paper-entry">
-			<div class="left-sub-container" style="width: 55%">
-				<div class="left-blurb" style="padding-top: 0px; padding-right: 60px">
+			<div class="left-sub-container" style="width: 46%">
+				<div class="left-blurb" style="padding-top: 0px; padding-right: 30px">
 					<h2>BEAST3D: Animal Behavioral Analysis and Neural Encoding from Multi-View Video via Gaussian Splatting</h2>
 					<p class="paper-authors">Yanchen Wang, <b>Lenny Aharon</b>, Wangshu Zhu, Kyle Daruwalla, Linghua Zhang, Jiaru Zou, Selmaan N. Chettih, Xun Helen Hou, Liam Paninski, Matthew R. Whiteway. 2026.</p>
 					<p>A self-supervised 3D foundation model that predicts 3D Gaussian splats from as few as four camera
@@ -230,7 +302,7 @@
 }</pre>
 				</div>
 			</div>
-			<div class="right-sub-container" style="width: 42%">
+			<div class="right-sub-container" style="width: 54%">
 				<div class="center-image">
 					<video src="images/beast3d.mp4" autoplay loop muted playsinline style="border-radius: 4px"></video>
 				</div>
@@ -239,8 +311,8 @@
 
 		<!-- 3. Mighty Mouse / Anchored LoRA -->
 		<div class="paper-entry">
-			<div class="left-sub-container" style="width: 55%">
-				<div class="left-blurb" style="padding-top: 0px; padding-right: 60px">
+			<div class="left-sub-container" style="width: 46%">
+				<div class="left-blurb" style="padding-top: 0px; padding-right: 30px">
 					<h2>Mighty Mouse: A Pose Foundation Model That Remembers What You Never Labeled</h2>
 					<p class="paper-authors"><b>Lenny Aharon</b>, Kyle Daruwalla, Xun Helen Hou, Masashi Kondo, Masanori Matsuzaki, Keisuke Sehara, Fanny Cazettes, Aurelien Aberlenc, International Brain Laboratory, Liam Paninski, Matthew R. Whiteway. 2026.</p>
 					<p>A pose foundation model trained across independently annotated lab datasets, plus Anchored LoRA, a
@@ -262,7 +334,7 @@
 }</pre>
 				</div>
 			</div>
-			<div class="right-sub-container" style="width: 42%">
+			<div class="right-sub-container" style="width: 54%">
 				<div class="center-image">
 					<img src="images/mighty_mouse.png" alt="Anchored LoRA architecture: the student matches the lab's labels and the frozen Mighty Mouse teacher on keypoints the lab did not label" style="border-radius: 4px" />
 				</div>
@@ -271,8 +343,8 @@
 
 		<!-- 4. Audit Before You Merge -->
 		<div class="paper-entry">
-			<div class="left-sub-container" style="width: 55%">
-				<div class="left-blurb" style="padding-top: 0px; padding-right: 60px">
+			<div class="left-sub-container" style="width: 46%">
+				<div class="left-blurb" style="padding-top: 0px; padding-right: 30px">
 					<h2>Audit Before You Merge: Provenance, Probing, and Continual LoRA Composition</h2>
 					<p class="paper-authors"><b>Lenny Aharon</b>, Neta Glazer, Lior Aharon. 2026.</p>
 					<p>Continual LoRA adapter merging on Llama-3.1-8B and Mistral-7B, with a provenance audit and a
@@ -294,7 +366,7 @@
 }</pre>
 				</div>
 			</div>
-			<div class="right-sub-container" style="width: 42%">
+			<div class="right-sub-container" style="width: 54%">
 				<div class="center-image">
 					<img src="images/cont_lora_merge.png" alt="Continual LoRA merging overview" style="border-radius: 4px" />
 				</div>
@@ -303,8 +375,8 @@
 
 		<!-- 5. Creativity and Hallucinations in LLMs -->
 		<div class="paper-entry">
-			<div class="left-sub-container" style="width: 55%">
-				<div class="left-blurb" style="padding-top: 0px; padding-right: 60px">
+			<div class="left-sub-container" style="width: 46%">
+				<div class="left-blurb" style="padding-top: 0px; padding-right: 30px">
 					<h2>Creativity and Hallucinations Share Mechanisms in LLMs</h2>
 					<p class="paper-authors">Neta Glazer, Hadas Orgad, <b>Lenny Aharon</b>, Ethan Fetaya. 2026.</p>
 					<p class="paper-links">
@@ -314,7 +386,7 @@
 					</p>
 				</div>
 			</div>
-			<div class="right-sub-container" style="width: 42%">
+			<div class="right-sub-container" style="width: 54%">
 				<div class="center-image">
 					<img src="images/creative.png" alt="Shared mechanisms of creativity and hallucination" style="border-radius: 4px" />
 				</div>
@@ -323,8 +395,8 @@
 
 		<!-- 6. Sparse-View Interpretable 3D Animal Behavior -->
 		<div class="paper-entry">
-			<div class="left-sub-container" style="width: 55%">
-				<div class="left-blurb" style="padding-top: 0px; padding-right: 60px">
+			<div class="left-sub-container" style="width: 46%">
+				<div class="left-blurb" style="padding-top: 0px; padding-right: 30px">
 					<h2>Sparse-View Interpretable 3D Animal Behavior Representations for Neural Encoding and Decoding</h2>
 					<p class="paper-authors">Xinming Dai, Qihang Jin, Tianshu Tan, Baiyuan Chen, Hanrui Lyu, <b>Lenny Aharon</b>, Matthew R. Whiteway, Liam Paninski, Yizi Zhang. 2026.</p>
 					<p class="paper-links">
@@ -334,7 +406,7 @@
 					</p>
 				</div>
 			</div>
-			<div class="right-sub-container" style="width: 42%">
+			<div class="right-sub-container" style="width: 54%">
 				<div class="center-image">
 					<img src="images/ibl_3d.png" alt="Sparse-view 3D behavior representations" style="border-radius: 4px" />
 				</div>
@@ -343,8 +415,8 @@
 
 		<!-- 7. Audio-Language Models -->
 		<div class="paper-entry">
-			<div class="left-sub-container" style="width: 55%">
-				<div class="left-blurb" style="padding-top: 0px; padding-right: 60px">
+			<div class="left-sub-container" style="width: 46%">
+				<div class="left-blurb" style="padding-top: 0px; padding-right: 30px">
 					<h2>Are Audio-Language Models Listening? Audio-Specialist Heads for Adaptive Audio Steering</h2>
 					<p class="paper-authors">Neta Glazer*, <b>Lenny Aharon</b>*, Ethan Fetaya. 2026. (*equal contribution)</p>
 					<p class="paper-links">
@@ -362,7 +434,7 @@
 }</pre>
 				</div>
 			</div>
-			<div class="right-sub-container" style="width: 42%">
+			<div class="right-sub-container" style="width: 54%">
 				<div class="center-image">
 					<img src="images/audio_listen.png" alt="Audio-specialist attention heads" style="border-radius: 4px" />
 				</div>
@@ -371,8 +443,8 @@
 
 		<!-- 8. Uncertainty-Aware Multi-View Animal Pose Estimation (AAAI workshop) -->
 		<div class="paper-entry">
-			<div class="left-sub-container" style="width: 55%">
-				<div class="left-blurb" style="padding-top: 0px; padding-right: 60px">
+			<div class="left-sub-container" style="width: 46%">
+				<div class="left-blurb" style="padding-top: 0px; padding-right: 30px">
 					<h2>An Uncertainty-Aware Framework for Data-Efficient Multi-View Animal Pose Estimation</h2>
 					<p class="paper-authors"><b>Lenny Aharon</b>, Keemin Lee, Karan Sikka, Selmaan Chettih, Cole Hurwitz, Liam Paninski, Matthew R. Whiteway. 2025.</p>
 					<p class="paper-links">
@@ -393,7 +465,7 @@
 }</pre>
 				</div>
 			</div>
-			<div class="right-sub-container" style="width: 42%">
+			<div class="right-sub-container" style="width: 54%">
 				<div class="center-image">
 					<img src="images/mirror-mouse.gif" alt="Multi-view mirror-mouse pose estimation" style="border-radius: 4px" />
 				</div>
@@ -402,8 +474,8 @@
 
 		<!-- 9. Improved calibration-free multi-view pose estimation (CVPR workshop) -->
 		<div class="paper-entry">
-			<div class="left-sub-container" style="width: 55%">
-				<div class="left-blurb" style="padding-top: 0px; padding-right: 60px">
+			<div class="left-sub-container" style="width: 46%">
+				<div class="left-blurb" style="padding-top: 0px; padding-right: 30px">
 					<h2>Improved Calibration-Free Multi-View Pose Estimation with the Variance-Inflated Ensemble Kalman Smoother</h2>
 					<p class="paper-authors"><b>Lenny Aharon</b>*, Keemin Lee*, Karan Sikka, Selmaan Chettih, Cole Hurwitz, Liam Paninski, Matthew R. Whiteway. 2025. (*equal contribution)</p>
 					<p class="paper-links">
@@ -416,7 +488,7 @@
 					</p>
 				</div>
 			</div>
-			<div class="right-sub-container" style="width: 42%">
+			<div class="right-sub-container" style="width: 54%">
 				<div class="center-image">
 					<img src="images/eks.png" alt="Variance-inflated Ensemble Kalman Smoother" style="border-radius: 4px" />
 				</div>
